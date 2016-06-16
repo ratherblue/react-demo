@@ -5,9 +5,11 @@
   "description": "ReactJS",
   "main": "index.js",
   "scripts": {
+    "lint": "npm run lint:js",
     "lint:js": "eslint -v && eslint . --ext=jsx,js",
     "build": "webpack --progress",
-    "build:watch": "webpack --watch --progress"
+    "build:watch": "webpack --watch --progress",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
