@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 
 module.exports = {
     entry: {
@@ -16,14 +17,20 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass', 'postcss']
             }
         ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
-    }
-    ,
+    },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
-    ]
+    ],
+    postcss: function () {
+        return [autoprefixer];
+    }
 };
