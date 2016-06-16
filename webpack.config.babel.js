@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+import path from 'path';
+import webpack from 'webpack';
 
 module.exports = {
     entry: {
@@ -19,18 +19,11 @@ module.exports = {
             }
         ]
     },
-    externals: {
-        'react': 'React'
-    },
     resolve: {
-        modulesDirectories: ['.', './node_modules'],
         extensions: ['', '.js', '.jsx']
-    },
+    }
+    ,
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: Infinity,
-            filename: 'vendor.bundle.js'
-        })
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
     ]
 };
