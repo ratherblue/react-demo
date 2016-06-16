@@ -5,8 +5,9 @@
   "description": "ReactJS",
   "main": "index.js",
   "scripts": {
-    "lint": "npm run lint:js",
+    "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint -v && eslint . --ext=jsx,js",
+    "lint:scss": "sass-lint -v",
     "build": "webpack --progress",
     "build:watch": "webpack --watch --progress",
     "test": "npm run lint"

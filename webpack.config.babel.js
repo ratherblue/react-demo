@@ -3,7 +3,7 @@ import webpack from 'webpack';
 
 module.exports = {
     entry: {
-        js: [path.join(__dirname, './src', 'index.jsx')],
+        js: [path.join(__dirname, './src', 'jsx', 'index.jsx')],
         vendor: ['react', 'react-dom']
     },
     output: {
