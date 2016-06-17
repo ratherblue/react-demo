@@ -3,11 +3,12 @@ import React from 'react';
 var Dropdown = React.createClass({
     render: function() {
         var options = this.props.options.map(function (item, index) {
-            return <option key={index} value={item.value}>{item.title}</option>
+            return <option key={index} value={item.value}>{item.title}</option>;
         });
 
         return (
-            <select onChange={this.props.onChange} value={this.props.value}>{options}</select>
+            <select onChange={this.props.onChange}
+                    value={this.props.value}>{options}</select>
         );
     }
 });
@@ -16,7 +17,9 @@ var Dropdown = React.createClass({
 exports.MakeDropdown = React.createClass({
     render: function() {
         return (
-            <Dropdown onChange={this.props.onChange} value={this.props.data.makeValue} options={this.props.data.makes} />
+            <Dropdown onChange={this.props.onChange}
+                    value={this.props.data.makeValue}
+                    options={this.props.data.makes} />
         );
     }
 });
@@ -24,7 +27,9 @@ exports.MakeDropdown = React.createClass({
 exports.ModelDropdown = React.createClass({
     render: function() {
         return (
-            <Dropdown onChange={this.props.onChange} value={this.props.data.modelValue} options={this.props.data.models} />
+            <Dropdown onChange={this.props.onChange}
+                    value={this.props.data.modelValue}
+                    options={this.props.data.models} />
         );
     }
 });

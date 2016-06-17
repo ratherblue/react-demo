@@ -3,57 +3,16 @@ import ReactDOM from 'react-dom';
 
 require('../scss/styles.scss');
 
-import makes from './makes';
-import Dropdown from './dropdown';
+import DropDownForm from './dropdown-form';
 import StrokeFilters from './stroke-filters';
 import swimmingEvents from './swimming-events';
-
-var SearchForm = React.createClass({
-    onCourseChange: function(e) {
-        this.setState({ courseType: e.target.value });
-    },
-    onModelChange: function(e) {
-        let newValue = e.target.value;
-
-        this.setState({ modelValue: newValue });
-    },
-    onMakeChange: function(e) {
-        let newValue = e.target.value;
-
-        this.setState({ makeValue: newValue });
-        this.state.makes.map(function(item, index) {
-            if (item.value === newValue) {
-                this.setState({ models: item.models });
-            }
-        }, this);
-    },
-    getInitialState: function() {
-        return {
-            makeValue: 'Make',
-            makes: makes,
-            modelValue: 'Model',
-            models: [],
-            swimmingEvents: swimmingEvents,
-            courseType: 'short'
-        };
-    },
-    render: function() {
-        return (
-            <div>
-                <Dropdown.MakeDropdown data={this.state} onChange={this.onMakeChange} />
-                <Dropdown.ModelDropdown data={this.state} onChange={this.onModelChange} />
-
-                <SwimmingEvents data={this.state} onCourseChange={this.onCourseChange} />
-            </div>
-        );
-    }
-});
 
 var Events = React.createClass({
     render: function() {
         var events = this.props.data.events.map(function(item, index) {
-            return <li key={index}>{item.name}</li>
+            return <li key={index}>{item.name}</li>;
         }, this);
+
         return (
             <ul>
                 {events}
@@ -74,28 +33,57 @@ var Stroke = React.createClass({
     }
 });
 
-var SwimmingEvents = React.createClass({
+var Strokes = React.createClass({
     render: function() {
-        var stroke = this.props.data.swimmingEvents.map(function(item, index) {
+        var stroke = this.props.data.map(function(item, index) {
             return <Stroke key={index} data={item} active />;
         });
 
-        return(
+        return (
+            <ul>
+                {stroke}
+            </ul>
+        );
+    }
+});
+
+var SwimmingEvents = React.createClass({
+    render: function() {
+        return (
             <div>
                 <h1>Swimming Events</h1>
 
-                <StrokeFilters data={this.props.data} onChange={this.props.onCourseChange} />
-
-                <ul>
-                    {stroke}
-                </ul>
+                <StrokeFilters data={this.props.data}
+                        onChange={this.props.onCourseChange} />
+                <Strokes data={this.props.data.swimmingEvents} />
             </div>
+        );
+    }
+});
+
+var SearchForm = React.createClass({
+    onCourseChange: function(e) {
+        this.setState({ courseType: e.target.value });
+    },
+    getInitialState: function() {
+        return {
+            swimmingEvents: swimmingEvents,
+            courseType: 'short'
+        };
+    },
+    render: function() {
+        return (
+            <SwimmingEvents data={this.state}
+                    onCourseChange={this.onCourseChange} />
         );
     }
 });
 
 
 ReactDOM.render(
-    <SearchForm />,
+    <div>
+        <DropDownForm />
+        <SearchForm />
+    </div>,
     document.getElementById('searchForm')
 );
