@@ -9,7 +9,7 @@ charset = utf-8
 indent_style = space
 
 # 4 space indentation
-[*.{js}]
+[*.{js,jsx}]
 indent_size = 4
 
 [{.babel.json,.eslint.json}]
