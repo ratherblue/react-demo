@@ -11,14 +11,6 @@ import swimmingEvents from './swimming-events';
 var SearchForm = React.createClass({
     onCourseChange: function(e) {
         this.setState({ courseType: e.target.value });
-
-        var unfilteredSwimmingEvents = this.getInitialState();
-
-        unfilteredSwimmingEvents.map(function(item, index) {
-            this.item.events.map(function(event, i) {
-                console.log(event);
-            }, this);
-        }, this);
     },
     onModelChange: function(e) {
         let newValue = e.target.value;
